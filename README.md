@@ -40,8 +40,8 @@ Some [template frameworks](https://android-arsenal.com/tag/99) focused on Androi
 
 
 # Info
-Inspired by [article](http://techbeats.deluan.com/processing-large-templates-with-gradle-and-freemarker/).
-More details about [Gradle continuous build](http://jruby-gradle.org/news/2015/09/01/gradle-spotlight-continuous-build/).
-About custom tasks and how to watch changes. [More](https://docs.gradle.org/current/userguide/custom_tasks.html#N144D1).
-Nice article why dont use [JSP](https://blog.stackhunter.com/2014/01/17/10-reasons-to-replace-your-jsps-with-freemarker-templates/#Template_Loaders).
-Nice similar [tool](https://github.com/rogern/fmpp).
+- Inspired by [article](http://techbeats.deluan.com/processing-large-templates-with-gradle-and-freemarker/).
+- More details about [Gradle continuous build](http://jruby-gradle.org/news/2015/09/01/gradle-spotlight-continuous-build/).
+- About custom tasks and how to watch changes. [More](https://docs.gradle.org/current/userguide/custom_tasks.html#N144D1).
+- Nice article why dont use [JSP](https://blog.stackhunter.com/2014/01/17/10-reasons-to-replace-your-jsps-with-freemarker-templates/#Template_Loaders).
+- Nice similar [tool](https://github.com/rogern/fmpp).
