@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'sk.seky.gradle:build-templater:1.0'
+    }
+}
+
+import sk.seky.gradle.TemplateProcessor
+
+class WatchTask extends DefaultTask {
+    @InputDirectory
+    def File inputDir
+
+    @OutputDirectory
+    def File outputDir
+
+
+    @TaskAction
+    void execute(IncrementalTaskInputs inputs) {
+        def tp = new TemplateProcessor(inputDir, outputDir);
+        // ALL inputs considered out of date
+        if (!inputs.incremental) {
+            //project.delete(outputDir.listFiles())
+        }
+
+        inputs.outOfDate { change ->
+            tp.processFile(change.file)
+        }
+
+        inputs.removed { change ->
+            String relativePath = tp.computeRelativePath(change.file);
+            File outputFile = new File(outputDir, relativePath);
+            outputFile.delete();
+        }
+    }
+}
+
+task monitorWebResources(type: WatchTask) {
+    inputDir = file('src/www/')
+    outputDir = file("$buildDir/www")
+}
+
+// TODO: hook on clean
+// project.delete(outputDir.listFiles())

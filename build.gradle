@@ -1,0 +1,32 @@
+plugins {
+    id 'java' // or 'groovy' Must be explicitly applied
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'maven-publish'
+}
+
+sourceCompatibility = 1.7
+version = '1.0'
+group = 'sk.seky.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.freemarker:freemarker:2.3.23'
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+}
+
+shadowJar {
+    baseName = 'build-templater'
+    classifier = ''
+}
+
+publishing {
+    publications {
+        shadow(MavenPublication) {
+            from components.shadow
+            artifactId = 'build-templater'
+        }
+    }
+}
