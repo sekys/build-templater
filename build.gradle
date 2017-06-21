@@ -1,8 +1,19 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    }
+}
+
 plugins {
     id 'java' // or 'groovy' Must be explicitly applied
     id 'com.github.johnrengelman.shadow' version '1.2.3'
     id 'maven-publish'
 }
+
+apply plugin: 'com.jfrog.bintray'
 
 sourceCompatibility = 1.7
 version = '1.0'
@@ -29,4 +40,25 @@ publishing {
             artifactId = 'build-templater'
         }
     }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    pkg {
+        repo = 'sekys'
+        name = 'sk.seky.gradle'
+
+        version {
+            name = '1.0'
+            desc = 'build-templater'
+            released = new Date()
+            vcsTag = '1.0'
+        }
+
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/sekys.git'
+        websiteUrl = 'https://github.com/sekys'
+    }
+    configurations = ['archives']
 }
